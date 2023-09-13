@@ -1,18 +1,14 @@
-package org.example;
+package org.sorter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.io.IOException;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class StringSorterTest {
-    private StringSorter stringSorter;
-
-    @BeforeEach
-    void setUp() {
-        stringSorter = new StringSorter();
-    }
+    private final StringSorter stringSorter = new StringSorter();
 
     @Test
     void sortStringsWithPrefixA_ok() {
@@ -40,5 +36,20 @@ class StringSorterTest {
                 "disconnect", "disagree");
         List<String> actual = stringSorter.sortStrings(unsortedStrings, "dis");
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void sortStringsWhenSecondParameterIsNull_notOk() {
+        List<String> unsortedStrings = List.of("apple", "banana", "grape", "avocado", "cherry");
+        assertThrows(RuntimeException.class, () -> stringSorter.sortStrings(unsortedStrings, null),
+                "Method should throw " + RuntimeException.class.getName()
+                        + " is the second parameter is null");
+    }
+
+    @Test
+    void sortStringsWhenFirstParameterIsNull_notOk() {
+        assertThrows(RuntimeException.class, () -> stringSorter.sortStrings(null, "f"),
+                "Method should throw " + RuntimeException.class.getName()
+                        + " is the first parameter is null");
     }
 }
