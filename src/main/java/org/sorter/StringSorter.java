@@ -7,7 +7,7 @@ import java.util.List;
 public class StringSorter {
     public List<String> sortStrings(List<String> unsortedStrings, String exceptionChar) {
         if (exceptionChar == null) {
-            throw new RuntimeException("Can't sort strings. Second parameter is null!");
+            throw new RuntimeException("Can't sort strings. Exception сhar is null!");
         }
         if (unsortedStrings == null) {
             throw new RuntimeException("Can't sort strings. String list is null!");
